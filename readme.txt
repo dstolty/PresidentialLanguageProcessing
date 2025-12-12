@@ -36,3 +36,20 @@ chatinterface.py
 
 A child of Gemini and our prior lab. This is the interface to generate output from our trained models. Ensure correct LoRA checkpoint is loaded, either EO_lora or speech_lora (EO trained on both EO and speeches, while speech just on speeches). Ensure base model is LLama-7b. Adjust hyperparamters if necessary. 
 
+Instructions for using the DeBERTa quick lookup model:
+
+First, run embedding.py to store the text embeddings for easy access later. This program will
+have to run twice, once for the spoken_records.tsv file and one for the executive_orders.tsv
+file:
+
+$ python3 embedding.py -model [exorders, speeches]
+
+Now that the embeddings are stored, you can run the lookup.py file. There are a few options when
+running this file:
+
+$ python3 lookup.py -model  [exorders, speeches] -output [newfile, stdout]
+
+The -model option designates whether to lookup speeches or executive orders. The -output option
+specifies where the output is sent. In order to have a file to send to a model, there is an option
+to send the results to a newfile, which will be called search_results.tsv. Otherwise, the results
+can be printed to the terminal with the stdout option.
